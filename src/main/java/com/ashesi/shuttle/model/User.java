@@ -5,10 +5,11 @@ import jakarta.persistence.Entity;
 import java.util.List;
 
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import org.springframework.data.annotation.Id;
 
 @Entity
-//@Table(name="users")
+@Table(name = "users")
 public class User {
     private int id;
     private String firstName;
@@ -23,7 +24,7 @@ public class User {
     private String role;
 
 
-    public User(String role, int id, String firstName, String lastName, String email, String password, String phoneNumber) {
+    public User( int id, String firstName, String lastName,  String phoneNumber,String email, String password,String role) {
         this.role = role;
         this.id = id;
         this.firstName = firstName;
