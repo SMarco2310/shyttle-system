@@ -1,8 +1,6 @@
 package com.ashesi.shuttle.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Booking {
@@ -13,9 +11,20 @@ public class Booking {
     private String customerName;
     private String bookingDate;
     private String bookingTime;
+    @ManyToOne
+    @JoinColumn(name = "notification_notification_id")
+    private Notification notification;
     private String bookingLocation;
     private String bookingStatus;
     private String bookingType;
+
+    public Notification getNotification() {
+        return notification;
+    }
+
+    public void setNotification(Notification notification) {
+        this.notification = notification;
+    }
 
 
     public void setBookingID(int bookingID) {
