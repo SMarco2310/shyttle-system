@@ -2,8 +2,10 @@ package com.ashesi.shuttle.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "locations")
 public class Location {
 
 
@@ -11,10 +13,11 @@ public class Location {
     private String city;
     private String state;
     @Id
-    private int id;
+    private int locationID;
 
 
-    public Location(String street, String city, String state) {
+    public Location( int locationID,String street, String city, String state) {
+        this.locationID = locationID;
         this.street = street;
         this.city = city;
         this.state = state;
@@ -25,11 +28,11 @@ public class Location {
     }
 
     public int getId() {
-        return id;
+        return locationID;
     }
     public void setId(int id) {
 
-        this.id = id;
+        this.locationID = id;
     }
 
     public String getStreet() {

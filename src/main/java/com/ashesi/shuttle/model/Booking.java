@@ -2,29 +2,26 @@ package com.ashesi.shuttle.model;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+
 @Entity
+@Table(name = "bookings")
 public class Booking {
     @Id
     private int bookingID;
 //    @OneToOne(mappedBy = "bookings")
     private int customerID;
-    private String customerName;
-    private String bookingDate;
-    private String bookingTime;
-    @ManyToOne
-    @JoinColumn(name = "notification_notification_id")
-    private Notification notification;
-    private String bookingLocation;
+    private int driverID;
+    private int LocationID;
+    @JoinColumn(name = "notification_id")
+    private int notificationID;
     private String bookingStatus;
     private String bookingType;
+    private Timestamp bookingDate;
 
-    public Notification getNotification() {
-        return notification;
-    }
 
-    public void setNotification(Notification notification) {
-        this.notification = notification;
-    }
+
 
 
     public void setBookingID(int bookingID) {

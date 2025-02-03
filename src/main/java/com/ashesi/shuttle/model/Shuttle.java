@@ -3,25 +3,30 @@ package com.ashesi.shuttle.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "shuttles")
 public class Shuttle {
 
     @Id
     private int id;
 
-    private String shuttleName;
+//    private String shuttleName;
 
     private int capacity;
 
     private String licensePlateNumber;
 
+    private int driverID;
 
-    public Shuttle(int id, String shuttleName, int capacity, String licensePlateNumber) {
+
+    public Shuttle(int id, int capacity, String licensePlateNumber, int driverID) {
         this.id = id;
-        this.shuttleName = shuttleName;
+//        this.shuttleName = shuttleName;
         this.capacity = capacity;
         this.licensePlateNumber = licensePlateNumber;
+        this.driverID = driverID;
     }
 
     public Shuttle() {
@@ -36,13 +41,13 @@ public class Shuttle {
     public void setId(int id) {
         this.id = id;
     }
-    public String getShuttleName() {
-        return shuttleName;
-    }
+//    public String getShuttleName() {
+//        return shuttleName;
+//    }
 
-    public void setShuttleName(String shuttleName) {
-        this.shuttleName = shuttleName;
-    }
+//    public void setShuttleName(String shuttleName) {
+//        this.shuttleName = shuttleName;
+//    }
 
     public int getCapacity() {
         return capacity;
@@ -61,4 +66,10 @@ public class Shuttle {
     }
 
 
+    public int getDriverID() {
+        return driverID;
+    }
+    public void setDriverID(int driverID) {
+        this.driverID = driverID;
+    }
 }
