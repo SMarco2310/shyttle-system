@@ -4,38 +4,26 @@ import com.ashesi.shuttle.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+    Optional<User> findById(int id);
 
-//    User findByUsername(String username);
+    Optional<User> findByEmail(String email);
 
-    User findById(int id);
+    Optional<User> findByFirstName(String firstName);
 
-    User findByEmail(String email);
+    Optional<User> findByLastName(String lastName);
 
-    User findByFirstName(String firstName);
+    Optional<User> findByFirstNameAndLastName(String firstName, String lastName);
 
-    User findByLastName(String lastName);
-
-    User findByFirstNameAndLastName(String firstName, String lastName);
-
-    User findUserByFirstNameEquals(String firstName);
-
-    User findUserByLastNameEquals(String lastName);
-
-    void deleteByID(int id);
+    void deleteById(int id);
 
     void deleteByEmail(String email);
 
     void deleteByFirstName(String firstName);
 
     void deleteByLastName(String lastName);
-
-    void deleteAll();
-
-    User save(User user);
-
-
 }

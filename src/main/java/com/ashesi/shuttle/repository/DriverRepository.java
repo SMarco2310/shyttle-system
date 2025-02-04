@@ -4,32 +4,21 @@ import com.ashesi.shuttle.model.Driver;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+import java.util.Optional;
 
+@Repository
 public interface DriverRepository extends JpaRepository<Driver, Integer> {
 
+    Optional<Driver> findByFirstName(String firstName);
 
-    Driver findByEmail(String email);
+    Optional<Driver> findByLastName(String lastName);
 
-    Driver findByFirstName(String firstName);
-
-    Driver findByLastName(String lastName);
-
-    Driver findById(int id);
+    Optional<Driver> findById(int id);
 
     void deleteById(int id);
 
-    void deleteByEmail(String email);
 
     void deleteByFirstName(String firstName);
 
     void deleteByLastName(String lastName);
-
-    @Override
-    void deleteAll();
-
-
-
-    Driver save(Driver driver);
-
 }
