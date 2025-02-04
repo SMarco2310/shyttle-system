@@ -21,9 +21,6 @@ public class Booking {
     private Timestamp bookingDate;
 
 
-
-
-
     public void setBookingID(int bookingID) {
         this.bookingID = bookingID;
     }

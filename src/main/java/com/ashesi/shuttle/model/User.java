@@ -1,5 +1,6 @@
 package com.ashesi.shuttle.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 //import org.hibernate.annotations.Table;
 import java.util.List;
@@ -21,6 +22,8 @@ public class User {
     private List<Booking> HistoricalBookings;
     @OneToMany
     private List<Payment> HistoricalPayments;
+    @Column(insertable = false, updatable = false) // Managed by DiscriminatorColumn
+
     private String role;
 
 
@@ -93,8 +96,14 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+
+
     public String getRole() {
         return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
 

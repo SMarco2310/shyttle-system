@@ -1,34 +1,35 @@
 package com.ashesi.shuttle.repository;
 
-
 import com.ashesi.shuttle.model.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
-    Booking findByBookingId(int bookingId);
+    Optional<Booking> findByBookingId(int bookingId);
 
-    Booking findByBookingDate(String bookingDate);
+    Optional<Booking> findByBookingDate(String bookingDate);
 
-    Booking findByDriverID(int driverID);
+    Optional<Booking> findByDriverID(int driverID);
 
-    Booking findByCustomerID(int customerID);
+    Optional<Booking> findByCustomerID(int customerID);
 
-    Booking findByLocationID(int locationID);
+    Optional<Booking> findByLocationID(int locationID);
 
-    Booking findBookingByCustomerID(int customerID);
+    Optional<Booking> findBookingByCustomerID(int customerID);
 
-    Booking findBookingByLocationID(int locationID);
-
+    Optional<Booking> findBookingByLocationID(int locationID);
 
     void deleteByBookingId(int bookingId);
+
     void deleteByCustomerID(int customerID);
+
     void deleteByLocationID(int locationID);
+
     void deleteByBookingDate(String bookingDate);
+
     void deleteByDriverID(int driverID);
-
-
-    Booking save(Booking booking);
 }

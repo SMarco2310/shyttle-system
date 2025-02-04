@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "admins")
+//@Table(name = "admins")
 public class Admin extends User {
     public Admin( int id, String firstName, String lastName, String email, String phoneNumber, String password) {
         super(id, firstName, lastName,  phoneNumber,email, password,"ADMIN");
