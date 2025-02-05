@@ -12,6 +12,8 @@ import org.springframework.data.annotation.Id;
 @Entity
 @Table(name = "users")
 public class User {
+
+
     private int id;
     private String firstName;
     private String lastName;

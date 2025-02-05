@@ -5,32 +5,31 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Integer> {
 
 //    Payment findById(int id);
 
-    Payment findByPaymentId(int paymentId);
+    List<Payment> findByPaymentType(String paymentType);
 
-    Payment findByCustomerId(int customerId);
-
-    Payment findByPaymentDate(Timestamp paymentDate);
+    Payment findByPaymentTime(Timestamp paymentTime);
 
     Payment findByPaymentStatus(String paymentStatus);
 
     Payment findPaymentByPaymentType(String paymentType);
 
 
-    Payment findByCustomerIdAndPaymentId(int customerId, int paymentId);
+//    Payment findByCustomerIdAndPaymentId(int customerId, int paymentId);
 
-    void deleteByPaymentId(int paymentId);
-
-    void deleteByCustomerId(int customerId);
-
-    void deleteByPaymentIdAndCustomerId(int paymentId, int customerId);
-
-    Payment save(Payment payment);
+    void deleteById(int paymentId);
+//
+//    void deleteByCustomerId(int customerId);
+//
+////    void deleteByPaymentIdAndCustomerId(int paymentId, int customerId);
+//
+//    Payment save(Payment payment);
 
 
 

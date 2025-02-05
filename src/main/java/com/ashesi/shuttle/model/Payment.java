@@ -1,13 +1,17 @@
 package com.ashesi.shuttle.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+@Getter
 @Entity
 @Table(name = "payments")
 public class Payment {
 
+    // Getters and Setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Assuming auto-increment is needed
     private Integer id;
@@ -33,41 +37,20 @@ public class Payment {
         this.paymentStatus = paymentStatus;
     }
 
-    // Getters and Setters
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
+    public void  setPaymentid(Integer Paymentid) {
+        this.id = Paymentid;
     }
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    public String getPaymentType() {
-        return paymentType;
-    }
-
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
     }
 
-    public String getPaymentStatus() {
-        return paymentStatus;
-    }
-
     public void setPaymentStatus(String paymentStatus) {
         this.paymentStatus = paymentStatus;
-    }
-
-    public Timestamp getPaymentTime() {
-        return paymentTime;
     }
 
     public void setPaymentTime(Timestamp paymentTime) {
@@ -77,7 +60,7 @@ public class Payment {
     @Override
     public String toString() {
         return "Payment{" +
-                "id=" + id +
+                "Payment=" + id +
                 ", amount=" + amount +
                 ", paymentType='" + paymentType + '\'' +
                 ", paymentStatus='" + paymentStatus + '\'' +
