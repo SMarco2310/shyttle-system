@@ -13,6 +13,12 @@ public interface DriverRepository extends JpaRepository<Driver, Integer> {
 
     Optional<Driver> findByLastName(String lastName);
 
+    Optional<Driver> findByEmail(String email);
+
+    Optional<Driver> findByLastNameAndFirstName(String lastName, String firstName);
+
+    Optional<Driver> findByPhoneNumber(String phoneNumber);
+
     Optional<Driver> findById(int id);
 
     void deleteById(int id);

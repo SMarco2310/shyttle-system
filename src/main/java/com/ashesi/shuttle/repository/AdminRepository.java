@@ -10,6 +10,8 @@ import java.util.Optional;
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
+
+    Optional<Admin> findById(int id);
     Optional<Admin> findByEmail(String email);
 
     Optional<Admin> findByPhoneNumber(String phoneNumber);
@@ -20,9 +22,6 @@ public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
     List<Admin> findByRole(String role);
 
-    boolean existsByEmail(String email);
-
-    boolean existsByPhoneNumber(String phoneNumber);
 
     void deleteByEmail(String email);
 

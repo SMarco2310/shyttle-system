@@ -13,7 +13,9 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
 
     Optional<Notification> findByNotificationID(int notificationID);
 
-    Optional<Notification> findByTitleAndNotificationID(String title, int notificationID);
+    Optional<Notification> findByUserID(int userID);
+
+    Optional<Notification> findByRideID(int rideID);
 
     void deleteByNotificationID(int notificationID);
 

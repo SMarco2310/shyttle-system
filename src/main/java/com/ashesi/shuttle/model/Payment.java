@@ -37,8 +37,8 @@ public class Payment {
         this.paymentStatus = paymentStatus;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void  setPaymentid(Integer Paymentid) {
+        this.id = Paymentid;
     }
 
     public void setAmount(BigDecimal amount) {
@@ -60,7 +60,7 @@ public class Payment {
     @Override
     public String toString() {
         return "Payment{" +
-                "id=" + id +
+                "Payment=" + id +
                 ", amount=" + amount +
                 ", paymentType='" + paymentType + '\'' +
                 ", paymentStatus='" + paymentStatus + '\'' +
