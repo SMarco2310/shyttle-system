@@ -9,7 +9,7 @@ import java.util.Optional;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
-    Optional<Booking> findByBookingId(int bookingId);
+//    Optional<Booking> findByBookingId(int bookingId);
 
     Optional<Booking> findByBookingDate(String bookingDate);
 
@@ -17,11 +17,11 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
     Optional<Booking> findByCustomerID(int customerID);
 
-    Optional<Booking> findByLocationID(int locationID);
+//    Optional<Booking> findByLocationID(int locationID);
 
     Optional<Booking> findBookingByCustomerID(int customerID);
 
-    Optional<Booking> findBookingByLocationID(int locationID);
+//    Optional<Booking> findBookingByLocationID(int locationID);
 
     void deleteByBookingId(int bookingId);
 
@@ -29,7 +29,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
     void deleteByLocationID(int locationID);
 
-    void deleteByBookingDate(String bookingDate);
+//    void deleteByBookingDate(String bookingDate);
 
     void deleteByDriverID(int driverID);
 }
