@@ -14,27 +14,19 @@ public class Notification {
     private int notificationID;
     private String title;
     private int userID;
+    private String UserName;
     private int rideID;
-    private String driverName;
     private String message;
     private Timestamp sentAt;
 
-    public Notification(int notificationID, String title, int userID, int rideID, String driverName, String message, Timestamp sentAt) {
+    public Notification(int notificationID, String title, int userID, int rideID, String message, Timestamp sentAt,String UserName) {
         this.notificationID = notificationID;
         this.title = title;
         this.userID = userID;
         this.rideID = rideID;
-        this.driverName = driverName;
         this.message = message;
         this.sentAt = sentAt;
-    }
-
-    public Notification(int notificationID, String title, String message, int rideID) {
-
-        this.notificationID = notificationID;
-        this.title = title;
-        this.message = message;
-        this.rideID = rideID;
+        this.UserName = UserName;
     }
 
     public Notification() {

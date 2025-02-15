@@ -10,17 +10,21 @@ import java.time.LocalDate;
 public class Booking {
     @Id
     private int bookingID;
-//    @OneToOne(mappedBy = "bookings")
-    private int customerID;
-    private int driverID;
+    @ManyToOne
+    private Student student;
     private int LocationID;
     @JoinColumn(name = "notification_id")
     private int notificationID;
     private String bookingStatus;
-    private String bookingType;
     private Timestamp bookingDate;
 
+    public Student getStudent() {
+        return student;
+    }
 
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
 
     public void setBookingID(int bookingID) {

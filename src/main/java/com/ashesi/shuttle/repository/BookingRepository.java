@@ -14,10 +14,6 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
     Optional<Booking> findByBookingDate(Timestamp bookingDate);
 
-    Optional<Booking> findByDriverID(int driverID);
-
-    Optional<Booking> findByCustomerID(int customerID);
-
 //    Optional<Booking> findByLocationID(int locationID);
 
     Optional<Booking> findBookingByCustomerID(int customerID);

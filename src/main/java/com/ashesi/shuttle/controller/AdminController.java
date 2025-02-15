@@ -1,7 +1,7 @@
 package com.ashesi.shuttle.controller;
 
 import com.ashesi.shuttle.model.Admin;
-import com.ashesi.shuttle.repository.AdminRepository;
+import com.ashesi.shuttle.service.AdminService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,52 +12,39 @@ import java.util.Optional;
 @RequestMapping("/admins")
 public class AdminController {
 
-    private final AdminRepository adminRepository;
+    private final AdminService adminService;
 
-    public AdminController(AdminRepository adminRepository) {
-        this.adminRepository = adminRepository;
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Admin> getAllAdmins() {
-        return adminRepository.findAll();
+        return adminService.findAllAdmins();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Admin> getAdminById(@PathVariable Integer id) {
-        Optional<Admin> admin = adminRepository.findById(id);
+        Optional<Admin> admin = adminService.findAdminById(id);
         return admin.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public Admin createAdmin(@RequestBody Admin admin) {
-        return adminRepository.save(admin);
+
+    @PostMapping("/create")
+    public void createAdmin(@RequestBody Admin admin) {
+        adminService.addAdmin(admin.getFirstName(), admin.getLastName(), admin.getUserName(), admin.getEmail(), admin.getPhoneNumber(), admin.getPassword());
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Admin> updateAdmin(@PathVariable Integer id, @RequestBody Admin adminDetails) {
-        Optional<Admin> admin = adminRepository.findById(id);
-        if (admin.isPresent()) {
-            Admin updatedAdmin = admin.get();
-            updatedAdmin.setFirstName(adminDetails.getFirstName());
-            updatedAdmin.setLastName(adminDetails.getLastName());
-            updatedAdmin.setEmail(adminDetails.getEmail());
-            updatedAdmin.setPhoneNumber(adminDetails.getPhoneNumber());
-            updatedAdmin.setRole(adminDetails.getRole());
-            adminRepository.save(updatedAdmin);
-            return ResponseEntity.ok(updatedAdmin);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        adminService.updateAdmin(id, adminDetails.getFirstName(), adminDetails.getLastName(), adminDetails.getUserName(), adminDetails.getEmail(), adminDetails.getPhoneNumber(), adminDetails.getPassword());
+        return ResponseEntity.ok(adminDetails);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAdmin(@PathVariable Integer id) {
-        if (adminRepository.existsById(id)) {
-            adminRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteAdminById(@PathVariable Integer id) {
+        adminService.deleteAdminById(id);
+        return ResponseEntity.noContent().build();
     }
+
 }

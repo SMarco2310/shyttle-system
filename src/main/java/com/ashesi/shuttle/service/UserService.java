@@ -1,5 +1,6 @@
 package com.ashesi.shuttle.service;
 
+import com.ashesi.shuttle.exception.UserNotFoundException;
 import com.ashesi.shuttle.model.User;
 import com.ashesi.shuttle.repository.UserRepository;
 //import com.ashesi.shuttle.exception.UserNotFoundException;
@@ -31,10 +32,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void deleteUserById(Integer id) {
-//        if (!userRepository.existsById(id)) {
-//            throw new UserNotFoundException("User not found with id: " + id);
-//        }
+    public void deleteUserById(Integer id) throws UserNotFoundException {
+        if (!userRepository.existsById(id)) {
+            throw new UserNotFoundException("User not found with id: " + id);
+        }
         userRepository.deleteById(id);
     }
 

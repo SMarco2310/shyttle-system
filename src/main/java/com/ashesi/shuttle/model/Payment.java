@@ -57,14 +57,4 @@ public class Payment {
         this.paymentTime = paymentTime;
     }
 
-    @Override
-    public String toString() {
-        return "Payment{" +
-                "Payment=" + id +
-                ", amount=" + amount +
-                ", paymentType='" + paymentType + '\'' +
-                ", paymentStatus='" + paymentStatus + '\'' +
-                ", paymentTime=" + paymentTime +
-                '}';
-    }
 }

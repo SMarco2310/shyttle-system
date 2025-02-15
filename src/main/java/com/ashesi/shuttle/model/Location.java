@@ -14,13 +14,15 @@ public class Location {
     private String state;
     @Id
     private int locationID;
+    private double price;
 
 
-    public Location( int locationID,String street, String city, String state) {
+    public Location( int locationID,String street, String city, String state, double price) {
         this.locationID = locationID;
         this.street = street;
         this.city = city;
         this.state = state;
+        this.price = price;
     }
 
     public Location() {
@@ -34,6 +36,7 @@ public class Location {
 
         this.locationID = id;
     }
+
 
     public String getStreet() {
         return street;
@@ -57,5 +60,13 @@ public class Location {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

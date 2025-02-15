@@ -1,5 +1,6 @@
 package com.ashesi.shuttle.controller;
 
+import com.ashesi.shuttle.exception.UserNotFoundException;
 import com.ashesi.shuttle.model.User;
 import com.ashesi.shuttle.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -18,23 +19,23 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<User> getAllUsers() {
         return userService.findAllUsers();
     }
 
-    @GetMapping("/users")
-    public ResponseEntity<User> getUserById(@PathVariable Integer id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable("id") Integer id) {
         Optional<User> user = userService.findUserById(id);
         return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public User createUser(@RequestBody User user) {
         return userService.saveUser(user);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User userDetails) {
         Optional<User> user = userService.findUserById(id);
         if (user.isPresent()) {
@@ -50,8 +51,8 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Integer id) throws UserNotFoundException {
         if (userService.existsById(id)) {
             userService.deleteUserById(id);
             return ResponseEntity.noContent().build();

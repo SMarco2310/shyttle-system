@@ -12,10 +12,12 @@ public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
 
     Optional<Admin> findById(int id);
+
     Optional<Admin> findByEmail(String email);
 
     Optional<Admin> findByPhoneNumber(String phoneNumber);
 
+    Optional<Admin> findByUserName(String name);
     List<Admin> findByFirstNameContainingIgnoreCase(String firstName);
 
     List<Admin> findByLastNameContainingIgnoreCase(String lastName);
@@ -32,4 +34,8 @@ public interface AdminRepository extends JpaRepository<Admin, Integer> {
     void deleteByFirstName(String firstName);
 
     void deleteByLastName(String lastName);
+
+    void deleteAllUsers();
+
+
 }

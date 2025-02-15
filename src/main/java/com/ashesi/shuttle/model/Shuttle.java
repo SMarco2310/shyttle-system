@@ -1,38 +1,33 @@
 package com.ashesi.shuttle.model;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import java.util.List;
 
 @Entity
 @Table(name = "shuttles")
 public class Shuttle {
-
     @Id
     private int id;
-
-//    private String shuttleName;
 
     private int capacity;
 
     private String licensePlateNumber;
 
-    private int driverID;
+    @OneToMany(mappedBy = "shuttle")
+    private List<Student> students;
 
 
-    public Shuttle(int id, int capacity, String licensePlateNumber, int driverID) {
-        this.id = id;
-//        this.shuttleName = shuttleName;
-        this.capacity = capacity;
-        this.licensePlateNumber = licensePlateNumber;
-        this.driverID = driverID;
+    public List<Student> getStudents() {
+        return students;
     }
 
-    public Shuttle() {
-
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
-
 
     public int getId() {
         return id;
@@ -41,13 +36,10 @@ public class Shuttle {
     public void setId(int id) {
         this.id = id;
     }
-//    public String getShuttleName() {
-//        return shuttleName;
-//    }
 
-//    public void setShuttleName(String shuttleName) {
-//        this.shuttleName = shuttleName;
-//    }
+    public void addStudent(Student student) {
+        this.students.add(student);
+    }
 
     public int getCapacity() {
         return capacity;
@@ -63,13 +55,5 @@ public class Shuttle {
 
     public void setLicensePlateNumber(String licensePlateNumber) {
         this.licensePlateNumber = licensePlateNumber;
-    }
-
-
-    public int getDriverID() {
-        return driverID;
-    }
-    public void setDriverID(int driverID) {
-        this.driverID = driverID;
     }
 }
