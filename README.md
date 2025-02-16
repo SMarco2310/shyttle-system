@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This project is a backend application built with the Java Spring Boot framework. It is designed to manage a school shuttle system that allows students to go home during the weekend. This project aims to apply and demonstrate the knowledge gained while learning Java Spring Boot.
+This project is a backend application built with the Java Spring Boot framework. It is designed to manage a school shuttle system that allows students to go home during the weekend. This project aims to apply and demonstrate the knowledge gained while learning Java Spring Boot. 
 
 ## Features
 
