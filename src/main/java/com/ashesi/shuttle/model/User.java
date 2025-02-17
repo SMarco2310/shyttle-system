@@ -1,12 +1,10 @@
 package com.ashesi.shuttle.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 //import org.hibernate.annotations.Table;
+import java.util.Collection;
 import java.util.List;
 
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import org.springframework.data.annotation.Id;
 
 @Entity
@@ -25,13 +23,16 @@ public class User {
     private List<Booking> HistoricalBookings;
     @OneToMany
     private List<Payment> HistoricalPayments;
-    @Column(insertable = false, updatable = false) // Managed by DiscriminatorColumn
+//    @ManyToMany(fetch = FetchType.EAGER)
 
-    private String role;
+//    @JoinTable(
+//            name = "users_roles",
+//            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+//    private Collection<Role> roles;
 
 
-    public User( int id, String firstName, String lastName, String UserName, String phoneNumber,String email, String password,String role) {
-        this.role = role;
+    public User( int id, String firstName, String lastName, String UserName, String phoneNumber,String email, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -41,8 +42,7 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public User( String firstName, String lastName, String UserName, String phoneNumber,String email, String password,String role) {
-        this.role = role;
+    public User( String firstName, String lastName, String UserName, String phoneNumber,String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.UserName = UserName;
@@ -116,14 +116,6 @@ public class User {
     }
 
 
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
 
 }

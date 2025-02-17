@@ -13,26 +13,29 @@ public class Location {
     private String city;
     private String state;
     @Id
-    private int locationID;
+    private Long locationID;
     private double price;
 
+    private String LocationURL;
 
-    public Location( int locationID,String street, String city, String state, double price) {
+
+    public Location( Long locationID,String street, String city, String state, double price,String locationUrl) {
         this.locationID = locationID;
         this.street = street;
         this.city = city;
         this.state = state;
         this.price = price;
+        this.LocationURL =locationUrl;
     }
 
     public Location() {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return locationID;
     }
-    public void setId(int id) {
+    public void setId(Long id) {
 
         this.locationID = id;
     }
@@ -68,5 +71,12 @@ public class Location {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getLocationURL() {
+        return LocationURL;
+    }
+    public void setLocationURL(String locationURL) {
+        LocationURL = locationURL;
     }
 }

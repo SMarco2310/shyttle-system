@@ -10,4 +10,9 @@ public abstract  class utilClass {
         }
         return nextFriday;
     }
+
+
+    public static void main(String[] args) {
+        System.out.println(getNextFriday());
+    }
 }
