@@ -15,7 +15,6 @@ public class BookingService {
 
 
 
-
     public void deleteBooking(int bookingId) {
         bookingRepository.deleteById(bookingId);
     }
