@@ -11,13 +11,12 @@ import java.sql.Timestamp;
 @Table(name = "payments")
 public class Payment {
 
-    // Getters and Setters
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Assuming auto-increment is needed
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
-    private BigDecimal amount;
+    private double amount;
 
     @Column(name = "payment_type", length = 20, nullable = false)
     private String paymentType = "MOMO";
@@ -28,20 +27,33 @@ public class Payment {
     @Column(name = "payment_time", updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp paymentTime;
 
+    // Relationship with User
+    @ManyToOne
+//    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    // Relationship with Booking
+    @OneToOne
+//    @JoinColumn(name = "booking_id", nullable = false)
+    private Booking booking;
+
     // Constructors
     public Payment() {}
 
-    public Payment(BigDecimal amount, String paymentType, String paymentStatus) {
+    public Payment(double amount, String paymentType, String paymentStatus, User user, Booking booking) {
         this.amount = amount;
         this.paymentType = paymentType;
         this.paymentStatus = paymentStatus;
+        this.user = user;
+        this.booking = booking;
     }
 
-    public void  setPaymentid(Integer Paymentid) {
-        this.id = Paymentid;
+    // Getters and Setters
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
@@ -57,4 +69,11 @@ public class Payment {
         this.paymentTime = paymentTime;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
 }

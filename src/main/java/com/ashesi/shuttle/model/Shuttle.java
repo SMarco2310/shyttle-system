@@ -1,43 +1,58 @@
 package com.ashesi.shuttle.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "shuttles")
 public class Shuttle {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    private int maxCapacity;
     private int capacity;
 
-    private String licensePlateNumber;
-
     @OneToMany(mappedBy = "shuttle")
-    private List<Student> students;
+    private List<User> students = new ArrayList<>();
 
+    @OneToOne
+    private static Shuttle instance;
 
-    public List<Student> getStudents() {
+    public Shuttle() {
+
+    }
+
+    public static Shuttle getInstance() {
+        if (instance == null) {
+            instance = new Shuttle();
+        }
+        return instance;
+    }
+
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public List<User> getStudents() {
         return students;
     }
 
-    public void setStudents(List<Student> students) {
+    public void setStudents(List<User> students) {
         this.students = students;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public void addStudent(Student student) {
+    public void addStudent(User student) {
         this.students.add(student);
     }
 
@@ -47,13 +62,5 @@ public class Shuttle {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
-    }
-
-    public String getLicensePlateNumber() {
-        return licensePlateNumber;
-    }
-
-    public void setLicensePlateNumber(String licensePlateNumber) {
-        this.licensePlateNumber = licensePlateNumber;
     }
 }

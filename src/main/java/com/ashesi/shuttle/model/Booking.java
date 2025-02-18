@@ -38,23 +38,20 @@ public class Booking {
     private String status; // e.g., "Pending", "Confirmed", "Cancelled"
 
 //    @Column(name = "payment_status")
-    private String paymentStatus; // e.g., "Paid", "Unpaid"
+//    private String paymentStatus; // e.g., "Paid", "Unpaid"
 
-//    @Column(name = "price")
-    private double price; // Price of the ride at the time of booking
 
     // Default constructor (required by JPA)
     public Booking() {}
 
     // Parameterized constructor
-    public Booking(User student, Location location, LocalDateTime bookingDate, LocalDate tripDate, String status, String paymentStatus, double price) {
+    public Booking(User student, Location location, LocalDateTime bookingDate, LocalDate tripDate, String status){ //String paymentStatus) {
         this.student = student;
         this.location = location;
         this.bookingDate = bookingDate;
         this.tripDate = tripDate;
         this.status = status;
-        this.paymentStatus = paymentStatus;
-        this.price = price;
+//        this.paymentStatus = paymentStatus;
     }
 
     // Getters and Setters
@@ -106,21 +103,14 @@ public class Booking {
         this.status = status;
     }
 
-    public String getPaymentStatus() {
-        return paymentStatus;
-    }
+//    public String getPaymentStatus() {
+//        return paymentStatus;
+//    }
+//
+//    public void setPaymentStatus(String paymentStatus) {
+//        this.paymentStatus = paymentStatus;
+//    }
 
-    public void setPaymentStatus(String paymentStatus) {
-        this.paymentStatus = paymentStatus;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
     // Override toString(), equals(), and hashCode()...
 }
