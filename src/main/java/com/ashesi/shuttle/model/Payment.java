@@ -10,33 +10,24 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "payments")
 public class Payment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private double amount;
-
-    @Column(name = "payment_type", length = 20, nullable = false)
     private String paymentType = "MOMO";
-
-    @Column(name = "payment_status", length = 20, nullable = false)
     private String paymentStatus = "PENDING";
-
-    @Column(name = "payment_time", updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp paymentTime;
 
-    // Relationship with User
     @ManyToOne
-//    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    // Relationship with Booking
     @OneToOne
-//    @JoinColumn(name = "booking_id", nullable = false)
+    @JoinColumn(name = "booking_id")
     private Booking booking;
 
+    // Constructors, getters/setters
     // Constructors
     public Payment() {}
 

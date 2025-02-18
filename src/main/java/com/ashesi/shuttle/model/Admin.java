@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 import java.util.Collection;
 
 @Entity
-//@Table(name = "admins")
+@Table(name = "admins")
 public class Admin extends User {
 
 //    @JoinTable(name = "user_roles")

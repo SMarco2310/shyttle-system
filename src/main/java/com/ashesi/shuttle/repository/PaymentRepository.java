@@ -2,37 +2,15 @@ package com.ashesi.shuttle.repository;
 
 import com.ashesi.shuttle.model.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Optional;
 
-@Repository
-public interface PaymentRepository extends JpaRepository<Payment, Integer> {
-
-//    Payment findById(int id);
-
-    List<Payment> findByPaymentType(String paymentType);
-
-    Payment findByPaymentTime(Timestamp paymentTime);
-
-    Payment findByPaymentStatus(String paymentStatus);
-
-    Payment findPaymentByPaymentType(String paymentType);
-
-
-//    Payment findByCustomerIdAndPaymentId(int customerId, int paymentId);
-
-    void deleteById(int paymentId);
-//
-//    void deleteByCustomerId(int customerId);
-//
-////    void deleteByPaymentIdAndCustomerId(int paymentId, int customerId);
-//
-//    Payment save(Payment payment);
-
-
-
-
-
+public interface PaymentRepository extends JpaRepository<Payment, Long> {
+    Optional<Payment> findById(Long paymentID);
+    Optional<Payment> findByPaymentTime(Timestamp paymentTime);
+    Optional<Payment> findByPaymentStatus(String paymentStatus);
+    void deleteByPaymentID(int paymentID);
+    void deleteByUserID(int userID);
+    void deleteByRideID(int rideID);
 }

@@ -25,7 +25,7 @@ public class AdminService {
     }
 
     public Optional<Admin> findAdminByName(String name) {
-        return adminRepository.findByUserName(name);
+        return adminRepository.;
     }
 
     public void deleteAdminByName(String name) {

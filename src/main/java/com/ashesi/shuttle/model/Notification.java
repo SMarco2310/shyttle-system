@@ -9,8 +9,7 @@ public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int notificationID;
-
+    private Long notificationID;
     private String title;
 
     @ManyToOne
@@ -18,7 +17,7 @@ public class Notification {
     private User user; // Relationship with User entity
 
     @ManyToOne
-//    @JoinColumn(name = "booking_id")
+//   @JoinColumn(name = "booking_id")
     private Booking booking; // Relationship with Booking entity (nullable if not all notifications are booking-related)
 
     @ManyToOne
@@ -44,11 +43,11 @@ public class Notification {
     }
 
     // Getters and Setters
-    public int getNotificationID() {
+    public Long getNotificationID() {
         return notificationID;
     }
 
-    public void setNotificationID(int notificationID) {
+    public void setNotificationID(Long notificationID) {
         this.notificationID = notificationID;
     }
 

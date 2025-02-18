@@ -1,31 +1,29 @@
 package com.ashesi.shuttle.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "locations")
 public class Location {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String street;
     private String city;
     private String state;
-    @Id
-    private Long locationID;
     private double price;
+    private String locationUrl;
 
-    private String LocationURL;
-
+    // Constructors, getters/setters
 
     public Location( Long locationID,String street, String city, String state, double price,String locationUrl) {
-        this.locationID = locationID;
+        this.id = locationID;
         this.street = street;
         this.city = city;
         this.state = state;
         this.price = price;
-        this.LocationURL =locationUrl;
+        this.locationUrl =locationUrl;
     }
 
     public Location() {
@@ -33,11 +31,11 @@ public class Location {
     }
 
     public Long getId() {
-        return locationID;
+        return id;
     }
     public void setId(Long id) {
 
-        this.locationID = id;
+        this.id = id;
     }
 
 
@@ -74,9 +72,9 @@ public class Location {
     }
 
     public String getLocationURL() {
-        return LocationURL;
+        return locationUrl;
     }
     public void setLocationURL(String locationURL) {
-        LocationURL = locationURL;
+        locationUrl = locationURL;
     }
 }

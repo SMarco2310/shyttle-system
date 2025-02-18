@@ -7,8 +7,18 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LocationRepository extends JpaRepository<Location, Integer> {
-    Optional<Location> findByLocationID(int locationID);
-//    List<Location> findByLocationName(String locationName);
-//    void deleteByLocationID(int locationID);
-//    void deleteByLocationName(String locationName);
+
+    Optional<Location> findById(int id);
+
+    Optional<Location> findByCity(String City);
+
+    Optional<Location> findByCityAndStreet(String City, String Street);
+
+    List<Location> findByPrice(double price);
+
+    void deleteById(int id);
+
+    void deleteByLocationName(String locationName);
+
+    void deleteByLocationType(String locationType);
 }

@@ -2,40 +2,15 @@ package com.ashesi.shuttle.repository;
 
 import com.ashesi.shuttle.model.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
-@Repository
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
-
-
-    Optional<Admin> findById(int id);
-
-    Optional<Admin> findByEmail(String email);
-
-    Optional<Admin> findByPhoneNumber(String phoneNumber);
-
-    Optional<Admin> findByUserName(String name);
-    List<Admin> findByFirstNameContainingIgnoreCase(String firstName);
-
-    List<Admin> findByLastNameContainingIgnoreCase(String lastName);
-
-    List<Admin> findByRole(String role);
-
-
+    Admin findById(int Id);
+    Admin findByEmail(String email);
+    Admin findByFirstName(String firstName);
+    Admin findByLastName(String lastName);
+    Admin findByFirstNameAndLastName(String firstName, String lastName);
+    void deleteByAdminID(int adminID);
     void deleteByEmail(String email);
-
-    void deleteByPhoneNumber(String phoneNumber);
-
-    void deleteByRole(String role);
-
     void deleteByFirstName(String firstName);
-
     void deleteByLastName(String lastName);
-
-    void deleteAllUsers();
-
-
 }
