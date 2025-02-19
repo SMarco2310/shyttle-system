@@ -1,23 +1,28 @@
 package com.ashesi.shuttle.service;
 
+import com.ashesi.shuttle.dto.UserDTO;
 import com.ashesi.shuttle.exception.UserNotFoundException;
 import com.ashesi.shuttle.model.User;
 import com.ashesi.shuttle.repository.UserRepository;
-//import com.ashesi.shuttle.exception.UserNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService  {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<User> findAllUsers() {
@@ -28,8 +33,31 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public User saveUser(User user) {
+
+    public User Signup(UserDTO userDto) {
+        User user = new User();
+        return getUser(userDto, user);
+    }
+
+    private User getUser(UserDTO userDto, User user) {
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setUserName(userDto.getUserName());
+        user.setEmail(userDto.getEmail());
+        user.setPhoneNumber(userDto.getPhoneNumber());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+
         return userRepository.save(user);
+    }
+
+
+    public User updateUser(Integer id, UserDTO userDto) throws UserNotFoundException {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            User updatedUser = user.get();
+            return getUser(userDto, updatedUser);
+        }
+        throw new UserNotFoundException("User not found with id: " + id);
     }
 
     public void deleteUserById(Integer id) throws UserNotFoundException {

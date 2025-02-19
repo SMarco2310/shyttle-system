@@ -11,7 +11,8 @@ import java.util.Collection;
 public class Admin extends User {
 
 //    @JoinTable(name = "user_roles")
-    private Collection<Role> roles;
+    private Collection<Role> roles = (Collection<Role>) new Role("ADMIN");
+
     public Admin( int id, String firstName, String lastName, String UserName,String email, String phoneNumber, String password) {
         super(id, firstName, lastName, UserName,  phoneNumber,email, password);
     }
