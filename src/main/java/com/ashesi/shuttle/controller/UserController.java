@@ -4,6 +4,7 @@ import com.ashesi.shuttle.exception.UserNotFoundException;
 import com.ashesi.shuttle.model.User;
 import com.ashesi.shuttle.service.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,4 +61,17 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+
+    @DeleteMapping("/users/{userId}")
+    @PreAuthorize("hasRole('ADMIN')") // Only admins can access this endpoint
+    public ResponseEntity<String> deleteUser(@PathVariable Long userId) {
+        userService.deleteUser(userId);
+        return ResponseEntity.ok("User deleted successfully");
+    }
+
+//    @GetMapping("/users")
+//    @PreAuthorize("hasRole('ADMIN')") // Only admins can access this endpoint
+//    public ResponseEntity<List<User>> getAllUsers() {
+//        return ResponseEntity.ok(userService.getAllUsers());
 }

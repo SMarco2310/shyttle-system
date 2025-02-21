@@ -1,5 +1,6 @@
 package com.ashesi.shuttle.model;
 import  com.ashesi.shuttle.model.Location;
+import com.ashesi.shuttle.model.Location.Location;
 import com.ashesi.shuttle.util.utilClass;
 
 import jakarta.persistence.*;
@@ -22,16 +23,14 @@ public class Booking {
     private User student;
 
     @ManyToOne
-//    @JoinColumn(name = "location_id", referencedColumnName = "id")
-//    @NotNull(message = "Location is required")
+    @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
 
     @Column(name = "booking_date")
 //    @NotNull(message = "Booking date is required")
     private LocalDateTime bookingDate;
 
-//    @Column(name = "trip_date")
-//    @NotNull(message = "Trip date is required")
+    @Column(name = "trip_date")
     private LocalDate tripDate = utilClass.getNextFriday();
 
     @Column(name = "status")
@@ -45,7 +44,7 @@ public class Booking {
     public Booking() {}
 
     // Parameterized constructor
-    public Booking(User student, Location location, LocalDateTime bookingDate, LocalDate tripDate, String status){ //String paymentStatus) {
+    public Booking(User student, c location, LocalDateTime bookingDate, LocalDate tripDate, String status){ //String paymentStatus) {
         this.student = student;
         this.location = location;
         this.bookingDate = bookingDate;
@@ -103,14 +102,4 @@ public class Booking {
         this.status = status;
     }
 
-//    public String getPaymentStatus() {
-//        return paymentStatus;
-//    }
-//
-//    public void setPaymentStatus(String paymentStatus) {
-//        this.paymentStatus = paymentStatus;
-//    }
-
-
-    // Override toString(), equals(), and hashCode()...
 }

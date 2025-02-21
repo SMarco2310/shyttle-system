@@ -1,20 +1,18 @@
 package com.ashesi.shuttle.model;
 
 import jakarta.persistence.*;
-//import org.hibernate.annotations.Table;
 import java.util.Collection;
 import java.util.List;
-
+import java.util.stream.Collectors;
 import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 
+
 @Entity
 @Table(name = "users")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String firstName;
@@ -30,45 +28,43 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Payment> historicalPayments;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(
-//            name = "users_roles",
-//            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-//    )
-    private Collection<Role> roles;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+    )
+    private List<Role> roles;
 
     // Constructors, getters/setters
 
-    public User( int id, String firstName, String lastName, String UserName, String phoneNumber,String email, String password) {
+    public User(int id, String firstName, String lastName, String userName, String phoneNumber, String email, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = UserName;
+        this.userName = userName;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
     }
 
-    public User( String firstName, String lastName, String UserName, String phoneNumber,String email, String password) {
+    public User(String firstName, String lastName, String userName, String phoneNumber, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = UserName;
+        this.userName = userName;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
     }
-    public User(int id, String UserName, String password) {
+
+    public User(int id, String userName, String password) {
         this.id = id;
-        this.userName= UserName;
+        this.userName = userName;
         this.password = password;
     }
 
     public User() {
     }
-
-    @jakarta.persistence.Id
-    @Id
     public int getId() {
         return id;
     }
@@ -125,6 +121,9 @@ public class User {
 
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return (Collection<? extends GrantedAuthority>) roles;
+            return roles.stream()
+                        .map(role -> (GrantedAuthority) role::getName)
+                        .collect(Collectors.toList());
     }
 }
+

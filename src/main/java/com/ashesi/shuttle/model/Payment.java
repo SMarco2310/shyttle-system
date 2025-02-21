@@ -2,7 +2,8 @@ package com.ashesi.shuttle.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-
+import com.ashesi.shuttle.model.User;
+import com.ashesi.shuttle.model.Booking;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 

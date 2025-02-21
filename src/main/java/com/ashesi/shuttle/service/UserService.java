@@ -6,6 +6,7 @@ import com.ashesi.shuttle.model.User;
 import com.ashesi.shuttle.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,18 @@ public class UserService  {
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+
+
+    @PreAuthorize("hasRole('ADMIN')") // Only admins can delete users
+    public void deleteUser(Long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')") // Admins and users can view users
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     public List<User> findAllUsers() {

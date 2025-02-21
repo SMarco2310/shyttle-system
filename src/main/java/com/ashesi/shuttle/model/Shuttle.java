@@ -52,9 +52,9 @@ public class Shuttle {
         this.id = id;
     }
 
-    public void addStudent(User student) {
-        this.students.add(student);
-    }
+//    public void addStudent(User student) {
+//        this.students.add(student);
+//    }
 
     public int getCapacity() {
         return capacity;
